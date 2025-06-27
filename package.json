@@ -1,0 +1,70 @@
+{
+  "name": "minecraft-server-dashboard",
+  "version": "1.0.0",
+  "description": "A dashboard for managing self-hosted Minecraft servers",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:portable": "electron-builder --win portable",
+    "build:installer": "electron-builder --win nsis",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "chart.js": "^4.4.9",
+    "electron-store": "^8.1.0",
+    "extract-zip": "^2.0.1",
+    "minecraft-server-util": "^5.4.4",
+    "node-fetch": "^2.6.7",
+    "pidusage": "^4.0.1",
+    "systeminformation": "^5.25.11",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^24.6.3"
+  },
+  "build": {
+    "appId": "com.minecraft.serverdashboard",
+    "productName": "Minecraft Server Dashboard",
+    "directories": {
+      "output": "dist-new"
+    },
+    "files": [
+      "src/**/*",
+      "public/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "asar": false,
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "perMachine": false,
+      "differentialPackage": false
+    }
+  }
+}

@@ -1,0 +1,378 @@
+/* Vervain Theme - vibrant purple-focused dark color scheme */
+body.theme-Vervain {
+  --primary-color: #9575cd; /* Main purple - brighter for dark bg */
+  --primary-light: #b39ddb; /* Light purple */
+  --primary-dark: #7e57c2; /* Dark purple */
+  --secondary-color: #448aff; /* Blue */
+  --accent-color: #ff5252; /* Red */
+  --accent-light: #ff867f; /* Light red */
+  --accent-dark: #d32f2f; /* Dark red */
+  --bg-color: #121212; /* Dark background */
+  --bg-pattern: none; /* No pattern on dark background */
+  --card-bg: #1e1e1e; /* Dark card background */
+  --sidebar-bg: #0a0a0a; /* Black sidebar */
+  --sidebar-hover: #212121;
+  --sidebar-active: #2c2c2c;
+  --sidebar-text: #e0e0e0;
+  --text-color: #e0e0e0; /* Light text */
+  --text-secondary: #b0b0b0; /* Secondary text */
+  --border-color: #333333; /* Dark borders */
+  
+  /* Add theme-specific variables */
+  --modal-bg: #1e1e1e;
+  --modal-header-bg: #2d1f54; /* Dark purple header */
+  --toast-bg: #1e1e1e;
+  --form-bg: #1e1e1e;
+  --form-control-bg: #2c2c2c;
+  --form-control-text: #e0e0e0;
+  --form-control-border: #444444;
+  
+  /* Console colors */
+  --console-bg: #0a0a0a;
+  --console-text: #f5f5f5;
+  
+  /* Success colors for Vervain dark */
+  --success-color: #4caf50; /* Green */
+  --success-light: #81c784;
+}
+
+/* Vervain theme specific styling for dark mode */
+body.theme-Vervain .primary-btn {
+  background-color: var(--primary-color);
+  border-color: var(--primary-dark);
+  box-shadow: 0 2px 4px rgba(149, 117, 205, 0.3), 0 1px 2px rgba(149, 117, 205, 0.2);
+}
+
+body.theme-Vervain .primary-btn:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+  box-shadow: 0 4px 8px rgba(149, 117, 205, 0.4), 0 2px 4px rgba(149, 117, 205, 0.25);
+}
+
+body.theme-Vervain .server-card:before {
+  background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+}
+
+body.theme-Vervain .server-header:before {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
+body.theme-Vervain .stat-card:before {
+  background: linear-gradient(to right, var(--primary-light), var(--primary-color));
+}
+
+/* Dark card styling */
+body.theme-Vervain .server-card,
+body.theme-Vervain .server-header,
+body.theme-Vervain .console-container,
+body.theme-Vervain .stat-card,
+body.theme-Vervain .settings-group,
+body.theme-Vervain .help-card {
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-color: #333333;
+}
+
+/* Dark theme heading colors */
+body.theme-Vervain h1, 
+body.theme-Vervain h2, 
+body.theme-Vervain h3, 
+body.theme-Vervain h4 {
+  color: var(--text-color);
+}
+
+body.theme-Vervain .top-bar {
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #333333;
+}
+
+body.theme-Vervain .console-header {
+  background-color: #2d1f54;
+  border-color: #3d2a6e;
+}
+
+body.theme-Vervain .console-input input {
+  background-color: #262626;
+  color: var(--text-color);
+}
+
+body.theme-Vervain .page-title {
+  color: var(--text-color);
+}
+
+/* Scrollbar styling */
+body.theme-Vervain ::-webkit-scrollbar-track {
+  background: #212121;
+}
+
+body.theme-Vervain ::-webkit-scrollbar-thumb {
+  background: rgba(149, 117, 205, 0.4);
+  border-radius: 5px;
+}
+
+body.theme-Vervain ::-webkit-scrollbar-thumb:hover {
+  background: rgba(149, 117, 205, 0.6);
+}
+
+/* Form elements */
+body.theme-Vervain .form-group input, 
+body.theme-Vervain .form-group select, 
+body.theme-Vervain .form-group textarea {
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  border-color: #444444;
+}
+
+body.theme-Vervain .form-group input:focus, 
+body.theme-Vervain .form-group select:focus, 
+body.theme-Vervain .form-group textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(149, 117, 205, 0.25);
+}
+
+/* Toast styling */
+body.theme-Vervain .toast {
+  background-color: var(--toast-bg);
+  border-color: #333333;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+body.theme-Vervain .toast.success {
+  border-left: 5px solid var(--primary-color);
+}
+
+body.theme-Vervain .toast.success .toast-icon {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.theme-Vervain .toast.success:after {
+  background-color: var(--primary-color);
+}
+
+body.theme-Vervain .start-btn {
+  background-color: var(--primary-color);
+  border-color: var(--primary-dark);
+}
+
+body.theme-Vervain .start-btn:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+}
+
+body.theme-Vervain .server-name i {
+  color: var(--primary-color);
+}
+
+body.theme-Vervain .active-server-item {
+  border-color: rgba(126, 87, 194, 0.2);
+  background-color: rgba(126, 87, 194, 0.05);
+}
+
+body.theme-Vervain .active-server-item:hover {
+  background-color: rgba(126, 87, 194, 0.1);
+}
+
+body.theme-Vervain .server-status-dot {
+  background-color: var(--primary-color);
+}
+
+body.theme-Vervain .server-status-dot::after {
+  background-color: var(--primary-color);
+}
+
+/* Replace all success-color references for Vervain theme */
+body.theme-Vervain .status-running {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+}
+
+body.theme-Vervain .server-card .status-running + .status-badge {
+  color: var(--primary-color);
+}
+
+/* Server status indicator */
+body.theme-Vervain .server-status-indicator {
+  background-color: var(--card-bg);
+  border-color: #333333;
+  color: var(--text-color);
+}
+
+body.theme-Vervain .server-status-dropdown {
+  background-color: var(--card-bg);
+  border-color: #333333;
+}
+
+body.theme-Vervain .indicator-text {
+  color: var(--text-color);
+}
+
+/* File manager elements */
+body.theme-Vervain .files-header,
+body.theme-Vervain .files-list-header,
+body.theme-Vervain .file-viewer-header {
+  background-color: var(--sidebar-hover);
+  border-color: #333333;
+  color: var(--text-color);
+}
+
+body.theme-Vervain .file-item:hover {
+  background-color: var(--sidebar-hover);
+}
+
+body.theme-Vervain .file-item.selected {
+  background-color: rgba(149, 117, 205, 0.15);
+}
+
+/* Backup manager elements */
+body.theme-Vervain .backups-header,
+body.theme-Vervain .backups-list-header {
+  background-color: var(--sidebar-hover);
+  border-color: #333333;
+  color: var(--text-color);
+}
+
+body.theme-Vervain .backup-item:hover {
+  background-color: var(--sidebar-hover);
+}
+
+/* Fix breadcrumb text and borders */
+body.theme-Vervain .breadcrumb-item {
+  color: var(--text-secondary);
+}
+
+body.theme-Vervain .breadcrumb-item:not(.active) {
+  color: var(--primary-color);
+}
+
+body.theme-Vervain .breadcrumb-item::after {
+  color: var(--text-secondary);
+}
+
+body.theme-Vervain .breadcrumb-item.active {
+  color: var(--text-color);
+}
+
+/* Fix file item border */
+body.theme-Vervain .file-item {
+  border-color: #333333;
+}
+
+/* Fix backup item border */
+body.theme-Vervain .backup-item {
+  border-color: #333333;
+}
+
+/* Server info content text color adjustments for Vervain theme */
+body.theme-Vervain .server-info p .value {
+  color: #e0e0e0;  /* Lighter color for better visibility on dark theme */
+}
+
+/* Lighten values specifically for Vervain theme */
+body.theme-Vervain #detail-server-version,
+body.theme-Vervain #detail-ip-port,
+body.theme-Vervain #detail-memory,
+body.theme-Vervain #detail-gamemode,
+body.theme-Vervain #detail-difficulty,
+body.theme-Vervain #detail-created {
+  color: #e0e0e0;
+}
+
+/* Vervain theme toast styling */
+body.theme-Vervain .toast {
+  box-shadow: 0 8px 25px rgba(126, 87, 194, 0.15);
+  border-color: #e6e0ff;
+}
+
+body.theme-Vervain .toast.success {
+  border-left: 5px solid var(--success-color);
+}
+
+body.theme-Vervain .toast.success .toast-icon {
+  background: linear-gradient(135deg, var(--success-light) 0%, var(--success-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.theme-Vervain .toast.error {
+  border-left: 5px solid var(--accent-color);
+}
+
+body.theme-Vervain .toast.error .toast-icon {
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.theme-Vervain .toast.warning {
+  border-left: 5px solid var(--accent-color);
+}
+
+body.theme-Vervain .toast.warning .toast-icon {
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.theme-Vervain .toast.info {
+  border-left: 5px solid var(--secondary-color);
+}
+
+body.theme-Vervain .toast.info .toast-icon {
+  background: linear-gradient(135deg, #90caf9 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Additional subtle styling for notification types in Vervain */
+body.theme-Vervain .toast.success:after {
+  background-color: var(--success-color);
+}
+
+body.theme-Vervain .toast.error:after,
+body.theme-Vervain .toast.warning:after {
+  background-color: var(--accent-color);
+}
+
+body.theme-Vervain .toast.info:after {
+  background-color: var(--secondary-color);
+}
+
+/* Box decoration for toasts - subtle details */
+body.theme-Vervain .toast:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 0;
+  background-color: var(--toast-accent-color, var(--primary-color));
+}
+
+body.theme-Vervain .toast.success:before {
+  --toast-accent-color: var(--success-color);
+}
+
+body.theme-Vervain .toast.error:before,
+body.theme-Vervain .toast.warning:before {
+  --toast-accent-color: var(--accent-color);
+}
+
+body.theme-Vervain .toast.info:before {
+  --toast-accent-color: var(--secondary-color);
+}
+
+/* Player count styling */
+body.theme-Vervain #detail-players.has-players {
+  color: var(--vervain-accent);
+  font-weight: bold;
+}
+
+/* Detail page info values */
+body.theme-Vervain #detail-version,
+body.theme-Vervain #detail-server-version,
+body.theme-Vervain #detail-ip-port,
+body.theme-Vervain #detail-memory,
+body.theme-Vervain #detail-gamemode,
+body.theme-Vervain #detail-difficulty,
+body.theme-Vervain #detail-created {
+  color: #b39ddb; /* Using light purple for better visibility on dark bg */
+}

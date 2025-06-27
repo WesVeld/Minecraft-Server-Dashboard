@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft Server Dashboard</title>
+  <link rel="stylesheet" href="../src/renderer/styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <img src="../src/renderer/assets/logo.png" alt="Logo" class="logo">
+        <h1>Server Dashboard</h1>
+      </div>
+      <nav class="nav-menu">
+        <ul>
+          <li class="active"><a href="#" data-section="servers"><i class="fas fa-server"></i> My Servers</a></li>
+          <li><a href="#" data-section="settings"><i class="fas fa-cog"></i> Settings</a></li>
+          <li><a href="#" data-section="help"><i class="fas fa-question-circle"></i> Help</a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <p>Version 1.0.0</p>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <header class="top-bar">
+        <div class="server-status-indicator">
+          <div class="indicator-dot inactive" id="server-indicator-dot"></div>
+          <div class="indicator-text">
+            <span id="active-servers-count">0</span>
+            <span class="indicator-count">servers online</span>
+          </div>
+
+          <!-- New dropdown component -->
+          <div class="server-status-dropdown">
+            <div class="dropdown-header">
+              <span>Active Servers</span>
+              <span id="active-servers-dropdown-count">0</span>
+            </div>
+            <div id="active-servers-list">
+              <!-- Active server items will be inserted here dynamically -->
+              <div class="no-active-servers">No servers running</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Servers Section -->
+      <section id="servers-section" class="content-section active">
+        <div id="server-list" class="server-grid">
+          <!-- Server cards will be generated here -->
+          <div class="empty-state">
+            <i class="fas fa-server"></i>
+            <h2>No servers yet</h2>
+            <p>Create your first Minecraft server to get started</p>
+          </div>
+        </div>
+
+        <!-- Add the floating action button -->
+        <button id="create-server-fab" class="floating-action-btn">
+          <i class="fas fa-plus"></i>
+        </button>
+      </section>
+
+      <!-- Server Detail Section -->
+      <section id="server-detail-section" class="content-section">
+        <div class="server-header">
+          <div class="back-button">
+            <button id="back-to-servers-btn"><i class="fas fa-arrow-left"></i> Back to Servers</button>
+          </div>
+          <div class="server-title">
+            <h2 id="detail-server-name">Server Name</h2>
+            <span id="detail-server-status" class="status-badge">Stopped</span>
+          </div>
+          <div class="server-actions">
+            <button id="detail-start-btn" class="action-btn start-btn"><i class="fas fa-play"></i> Start</button>
+            <button id="detail-stop-btn" class="action-btn stop-btn"><i class="fas fa-stop"></i> Stop</button>
+            <button id="detail-restart-btn" class="action-btn restart-btn"><i class="fas fa-sync"></i> Restart</button>
+            <button id="detail-delete-btn" class="action-btn delete-btn"><i class="fas fa-trash"></i> Delete</button>
+          </div>
+        </div>
+
+        <!-- New tabbed interface for console and settings -->
+        <div class="detail-tabs">
+          <div class="tab-list">
+            <div id="server-console-tab" class="detail-tab active">
+              <i class="fas fa-terminal"></i> Console
+            </div>
+            <div id="server-settings-tab" class="detail-tab">
+              <i class="fas fa-cog"></i> Settings
+            </div>
+            <div id="server-files-tab" class="detail-tab">
+              <i class="fas fa-folder-open"></i> File Manager
+            </div>
+            <!-- Add this after the server-files-tab div -->
+            <div id="server-backups-tab" class="detail-tab">
+              <i class="fas fa-archive"></i> Backups
+            </div>
+          </div>
+        </div>
+
+        <!-- Replace the server-info-panel div with this: -->
+        <div class="server-info-panel">
+          <!-- Console Tab Content -->
+          <div id="console-tab-content" class="detail-tab-content active">
+            <div class="server-stats">
+              <!-- Existing server stats remain the same -->
+              <div class="stat-card">
+                <span class="stat-title">Version</span>
+                <span id="detail-version" class="stat-value">1.19.3</span>
+              </div>
+              <!-- Updated IP:Port card with increased width -->
+              <div class="stat-card" style="grid-column: span 2;">
+                <span class="stat-title">Server Address</span>
+                <span id="detail-ip-port" class="stat-value">127.0.0.1:25565</span>
+              </div>
+              <!-- Add players stat card -->
+              <div class="stat-card">
+                <span class="stat-title">Players</span>
+                <span id="detail-players" class="stat-value">0/20</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-title">Memory</span>
+                <span id="detail-memory" class="stat-value">1024 MB</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-title">Game Mode</span>
+                <span id="detail-gamemode" class="stat-value">Survival</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-title">Difficulty</span>
+                <span id="detail-difficulty" class="stat-value">Normal</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-title">Created</span>
+                <span id="detail-created" class="stat-value">2023-01-01</span>
+              </div>
+            </div>
+
+            <div class="console-container">
+              <div class="console-header">
+                <h3>Console</h3>
+                <button id="clear-console-btn">Clear</button>
+              </div>
+              <div id="console-output" class="console-output"></div>
+              <div class="console-input">
+                <input type="text" id="command-input" placeholder="Type a command...">
+                <button id="send-command-btn"><i class="fas fa-paper-plane"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Settings Tab Content -->
+          <div id="settings-tab-content" class="detail-tab-content">
+            <div id="settings-disabled-warning" class="warning-banner" style="display: none;">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span>Server must be stopped to edit settings</span>
+            </div>
+
+            <form id="server-settings-form" class="settings-form">
+              <div class="settings-section">
+                <h3>Basic Settings</h3>
+
+                <div class="form-group">
+                  <label for="settings-server-name">Server Name</label>
+                  <input type="text" id="settings-server-name" placeholder="My Minecraft Server" required>
+                  <p class="form-help">The display name of your server</p>
+                </div>
+
+                <div class="settings-row">
+                  <div class="form-group">
+                    <label for="settings-server-port">Server Port</label>
+                    <input type="number" id="settings-server-port" min="1024" max="65535" step="1" required>
+                    <p class="form-help">Port that players connect to</p>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="settings-server-memory">Memory (MB)</label>
+                    <input type="number" id="settings-server-memory" min="512" step="512" required>
+                    <p class="form-help">RAM allocated to the server</p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="settings-motd">Server Message (MOTD)</label>
+                  <input type="text" id="settings-motd" placeholder="A Minecraft Server" maxlength="59">
+                  <p class="form-help">Message shown in the server list</p>
+                </div>
+              </div>
+
+              <div class="settings-section">
+                <h3>Gameplay Settings</h3>
+
+                <div class="settings-row">
+                  <div class="form-group">
+                    <label for="settings-gamemode">Default Game Mode</label>
+                    <select id="settings-gamemode">
+                      <option value="survival">Survival</option>
+                      <option value="creative">Creative</option>
+                      <option value="adventure">Adventure</option>
+                      <option value="spectator">Spectator</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="settings-difficulty">Difficulty</label>
+                    <select id="settings-difficulty">
+                      <option value="peaceful">Peaceful</option>
+                      <option value="easy">Easy</option>
+                      <option value="normal">Normal</option>
+                      <option value="hard">Hard</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="settings-max-players">Max Players</label>
+                    <input type="number" id="settings-max-players" min="1" max="100" step="1">
+                  </div>
+                </div>
+
+                <div class="settings-row">
+                  <div class="form-group checkbox-group">
+                    <label>
+                      <input type="checkbox" id="settings-pvp">
+                      <span>Enable PvP</span>
+                    </label>
+                  </div>
+
+                  <div class="form-group checkbox-group">
+                    <label>
+                      <input type="checkbox" id="settings-command-blocks">
+                      <span>Enable Command Blocks</span>
+                    </label>
+                  </div>
+
+                  <div class="form-group checkbox-group">
+                    <label>
+                      <input type="checkbox" id="settings-online-mode">
+                      <span>Online Mode (Premium accounts only)</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="primary-btn">Save Settings</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- File Manager Tab Content (newly added) -->
+          <div id="file-manager-tab-content" class="detail-tab-content">
+            <div class="file-manager-header">
+              <h3>File Manager</h3>
+              <button id="upload-file-btn" class="primary-btn"><i class="fas fa-upload"></i> Upload File</button>
+            </div>
+
+            <div id="file-manager-container" class="file-manager-container">
+              <!-- File manager content will be loaded here -->
+              <div class="empty-message">
+                <i class="fas fa-folder-open"></i>
+                <p>No files found. Upload your server files using the button above.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add after the settings-tab-content div -->
+          <div id="files-tab-content" class="detail-tab-content">
+            <div class="files-container">
+              <div class="files-header">
+                <div class="breadcrumb-container">
+                  <nav aria-label="breadcrumb">
+                    <ol id="file-breadcrumbs" class="breadcrumb">
+                      <li class="breadcrumb-item active"><i class="fas fa-home"></i> Root</li>
+                    </ol>
+                  </nav>
+                </div>
+                <div class="file-actions">
+                  <button id="refresh-files-btn" class="icon-btn" title="Refresh">
+                    <i class="fas fa-sync-alt"></i>
+                  </button>
+                  <button id="upload-file-btn" class="icon-btn" title="Upload Files">
+                    <i class="fas fa-upload"></i>
+                  </button>
+                  <input type="file" id="file-upload-input" multiple style="display: none;">
+                </div>
+              </div>
+
+              <div class="files-content">
+                <div class="files-list-container">
+                  <div class="files-list-header">
+                    <div class="file-column file-name">Name</div>
+                    <div class="file-column file-size">Size</div>
+                    <div class="file-column file-modified">Modified</div>
+                    <div class="file-column file-actions">Actions</div>
+                  </div>
+                  <div id="files-list" class="files-list">
+                    <!-- Files will be listed here dynamically -->
+                    <div class="file-loading">
+                      <i class="fas fa-circle-notch fa-spin"></i> Loading files...
+                    </div>
+                  </div>
+                </div>
+
+                <div id="file-content-viewer" class="file-content-viewer">
+                  <div class="file-viewer-header">
+                    <h3 id="viewer-filename">No file selected</h3>
+                    <div class="viewer-actions">
+                      <button id="save-file-btn" class="action-btn primary-btn" disabled>
+                        <i class="fas fa-save"></i> Save
+                      </button>
+                      <button id="close-viewer-btn" class="action-btn secondary-btn">
+                        <i class="fas fa-times"></i> Close
+                      </button>
+                    </div>
+                  </div>
+                  <div id="file-editor-container" class="file-editor-container">
+                    <textarea id="file-editor" spellcheck="false"></textarea>
+                  </div>
+                  <div id="binary-file-message" class="binary-file-message">
+                    <i class="fas fa-file-binary"></i>
+                    <p>Binary file cannot be viewed in editor</p>
+                    <button id="download-binary-btn" class="secondary-btn">
+                      <i class="fas fa-download"></i> Download File
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add this after the files-tab-content div -->
+          <div id="backups-tab-content" class="detail-tab-content">
+            <div class="backups-container">
+              <div class="backups-header">
+                <div class="backup-actions">
+                  <button id="create-backup-btn" class="primary-btn">
+                    <i class="fas fa-plus"></i> Create Backup
+                  </button>
+                  <button id="refresh-backups-btn" class="icon-btn" title="Refresh">
+                    <i class="fas fa-sync-alt"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="backups-content">
+                <div class="backups-list-container">
+                  <div class="backups-list-header">
+                    <div class="backup-column backup-name">Name</div>
+                    <div class="backup-column backup-date">Date</div>
+                    <div class="backup-column backup-size">Size</div>
+                    <div class="backup-column backup-actions">Actions</div>
+                  </div>
+                  <div id="backups-list" class="backups-list">
+                    <!-- Backups will be listed here dynamically -->
+                    <div class="backup-loading">
+                      <i class="fas fa-circle-notch fa-spin"></i> Loading backups...
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Settings Section -->
+      <section id="settings-section" class="content-section">
+        <h2>Settings</h2>
+
+        <div class="settings-container">
+          <div class="settings-group">
+            <h3>Java Settings</h3>
+            <div class="form-group">
+              <label for="java-path">Java Path</label>
+              <div class="input-with-button">
+                <input type="text" id="java-path" placeholder="java" disabled>
+                <button id="change-java-path-btn">Change</button>
+              </div>
+              <p class="form-help">Path to the Java executable used to run Minecraft servers.</p>
+            </div>
+          </div>
+
+          <!-- Add this to the Settings Section after the existing Java Settings group -->
+          <div class="settings-group">
+            <h3><i class="fas fa-shield-alt"></i> Privacy Settings</h3>
+            <div class="form-group">
+              <label class="toggle-label">Streaming Mode</label>
+              <div class="toggle-with-description">
+                <label class="toggle-switch">
+                  <input type="checkbox" id="streaming-mode-toggle">
+                  <span class="toggle-slider"></span>
+                </label>
+                <div class="toggle-description">
+                  <p>Hide sensitive information like IP addresses when streaming or sharing your screen.</p>
+                  <p class="form-help">When enabled, server addresses will be shown as "xxx.xxx.xxx.xxx:port" instead of the actual IP.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add this after the Privacy Settings group in the Settings Section -->
+          <div class="settings-group">
+            <h3><i class="fas fa-palette"></i> Theme Settings</h3>
+            <div class="form-group">
+              <label class="toggle-label">Select Theme</label>
+              <div class="theme-selector">
+                <div class="theme-option" data-theme="default">
+                  <div class="theme-preview default-theme">
+                    <div class="theme-color primary"></div>
+                    <div class="theme-color secondary"></div>
+                  </div>
+                  <span>Default</span>
+                  <div class="theme-check"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="theme-option" data-theme="dark">
+                  <div class="theme-preview dark-theme">
+                    <div class="theme-color primary"></div>
+                    <div class="theme-color secondary"></div>
+                  </div>
+                  <span>Dark</span>
+                  <div class="theme-check"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="theme-option" data-theme="Osun">
+                  <div class="theme-preview Osun-theme">
+                    <div class="theme-color primary"></div>
+                    <div class="theme-color secondary"></div>
+                  </div>
+                  <span>OSun</span>
+                  <div class="theme-check"><i class="fas fa-check"></i></div>
+                </div>
+                <!-- Add this to your theme options in index.html -->
+                <div class="theme-option" data-theme="Vervain">
+                  <div class="theme-preview Vervain-theme">
+                    <div class="theme-color primary"></div>
+                    <div class="theme-color secondary"></div>
+                  </div>
+                  <span>Vervain</span>
+                  <div class="theme-check"><i class="fas fa-check"></i></div>
+                </div>
+              </div>
+              <p class="form-help">Choose a theme that suits your style. Changes apply immediately.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Help Section -->
+      <section id="help-section" class="content-section">
+        <h2>Help</h2>
+
+        <div class="help-container">
+          <div class="help-card">
+            <h3>Getting Started</h3>
+            <p>Create your first Minecraft server by clicking the "Create Server" button at the top of the page.
+              You'll need to provide a name, select a Minecraft version, and configure basic settings.</p>
+          </div>
+
+          <div class="help-card">
+            <h3>Requirements</h3>
+            <ul>
+              <li>Java 17 or later is required for Minecraft 1.18 and above</li>
+              <li>Sufficient RAM for your server (minimum 1GB recommended)</li>
+              <li>At least 1GB of free disk space per server</li>
+            </ul>
+          </div>
+
+          <div class="help-card">
+            <h3>Port Forwarding</h3>
+            <p>To allow players outside your local network to connect to your server, you'll need to set up port
+              forwarding on your router.
+              Forward the port you've configured for your server (default: 25565) to your computer's local IP address.
+            </p>
+          </div>
+
+          <div class="help-card">
+            <h3>Troubleshooting</h3>
+            <ul>
+              <li><strong>Server won't start:</strong> Check that Java is installed and properly configured</li>
+              <li><strong>Can't connect to server:</strong> Verify port forwarding is set up correctly</li>
+              <li><strong>Out of memory errors:</strong> Increase the memory allocation for your server</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Create Server Modal -->
+  <div id="create-server-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create New Server</h2>
+        <button id="close-modal-btn" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="create-server-form">
+          <div class="form-group">
+            <label for="server-name">Server Name</label>
+            <input type="text" id="server-name" placeholder="My Awesome Server" required>
+          </div>
+
+          <div class="form-group">
+            <label for="server-version">Minecraft Version</label>
+            <select id="server-version" required>
+              <option value="" disabled selected>Loading versions...</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="server-port">Server Port</label>
+              <input type="number" id="server-port" value="25565" min="1024" max="65535">
+            </div>
+
+            <div class="form-group">
+              <label for="server-memory">Memory (MB)</label>
+              <input type="number" id="server-memory" value="1024" min="512" step="512">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="server-gamemode">Game Mode</label>
+              <select id="server-gamemode">
+                <option value="survival">Survival</option>
+                <option value="creative">Creative</option>
+                <option value="adventure">Adventure</option>
+                <option value="spectator">Spectator</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="server-difficulty">Difficulty</label>
+              <select id="server-difficulty">
+                <option value="peaceful">Peaceful</option>
+                <option value="easy">Easy</option>
+                <option value="normal" selected>Normal</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="server-maxplayers">Max Players</label>
+            <input type="number" id="server-maxplayers" value="20" min="1" max="100">
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="cancel-create-server-btn" class="secondary-btn">Cancel</button>
+            <button type="submit" id="submit-create-server-btn" class="primary-btn">Create Server</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div id="delete-confirm-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Delete Server</h2>
+        <button id="close-delete-modal-btn" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete "<span id="delete-server-name"></span>"?</p>
+        <p class="warning">This action cannot be undone. All server files will be permanently deleted.</p>
+
+        <div class="form-actions">
+          <button id="cancel-delete-btn" class="secondary-btn">Cancel</button>
+          <button id="confirm-delete-btn" class="danger-btn">Delete Server</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update the Download Progress Modal -->
+  <div id="download-progress-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fas fa-download"></i> Creating Server</h2>
+      </div>
+      <div class="modal-body">
+        <div class="minecraft-block-container">
+          <div class="minecraft-block-grid" id="grass-block-grid">
+            <!-- Pixels will be generated here dynamically -->
+          </div>
+        </div>
+        <div id="download-progress-text">0%</div>
+        <p class="download-progress_info">Creating server with Minecraft <span id="download-version">version</span>...</p>
+        <div class="download-info-container">
+          <p class="form-help">Please wait while the server files are being downloaded.</p>
+          <p class="form-help"><i class="fas fa-info-circle"></i> Download time may vary based on your internet connection speed.</p>
+          <p class="form-help" id="download-size-info">Downloading approximately <span id="download-file-size">30-150</span> MB of data.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Exit Confirmation Modal -->
+  <div id="exit-confirm-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Servers Running</h2>
+      </div>
+      <div class="modal-body">
+        <p>There are Minecraft servers currently running.</p>
+        <p class="warning">Closing the application will leave these servers running in the background.</p>
+
+        <div class="form-actions">
+          <button id="cancel-exit-btn" class="secondary-btn">Cancel</button>
+          <button id="exit-without-stopping-btn" class="danger-btn">Exit Without Stopping</button>
+          <button id="stop-and-exit-btn" class="primary-btn">Stop All Servers & Exit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add right before your closing </body> tag, before your own script -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <script src="../src/renderer/index.js" type="module"></script>
+</body>
+
+</html>

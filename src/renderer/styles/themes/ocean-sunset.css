@@ -1,0 +1,333 @@
+/* Ocean Sunset Theme - a calming turquoise and coral color scheme */
+body.theme-Osun {
+  --primary-color: #4ecdc4; /* Main turquoise */
+  --primary-light: #7ddbd5; /* Light turquoise */
+  --primary-dark: #36b5ad; /* Dark turquoise */
+  --secondary-color: #ff6b6b; /* Coral */
+  --secondary-light: #ff8a8a; /* Light coral */
+  --secondary-dark: #e95454; /* Dark coral */
+  --accent-color: #ff9f43; /* Orange accent */
+  --accent-light: #ffbe76; /* Light orange */
+  --accent-dark: #e67e22; /* Dark orange */
+  --bg-color: #f7fbfb; /* Light turquoise-tinted background */
+  --bg-pattern: linear-gradient(120deg, #f7fbfb 0%, #e9f7f6 100%);
+  --card-bg: #ffffff; /* White card background */
+  --sidebar-bg: #2d3436; /* Dark sidebar */
+  --sidebar-hover: #3d4548;
+  --sidebar-active: #1e2224;
+  --sidebar-text: #f0f0f0;
+  --text-color: #2d3436; /* Dark text */
+  --text-secondary: #636e72; /* Gray text */
+  --border-color: #dfe6e9; /* Light border */
+  --danger-color: #ff6b6b; /* Coral */
+  --danger-light: #ff8a8a;
+  --warning-color: #ff9f43; /* Orange */
+  --warning-light: #ffbe76;
+  --success-color: #4ecdc4; /* Turquoise */
+  --success-light: #7ddbd5;
+  --info-color: #3498db; /* Blue */
+  --info-light: #a1d7f7;
+  
+  /* Add theme-specific shadow variables */
+  --shadow: 0 6px 15px rgba(78, 205, 196, 0.1);
+  --card-shadow: 0 4px 6px rgba(78, 205, 196, 0.05), 0 1px 3px rgba(78, 205, 196, 0.1);
+  --hover-shadow: 0 10px 25px rgba(78, 205, 196, 0.15);
+  
+  /* Console colors */
+  --console-bg: #2d3436;
+  --console-text: #f0f0f0;
+  --console-error: #ff8a8a;
+  --console-warning: #ffbe76;
+  --console-info: #7ddbd5;
+  --console-success: #7ddbd5;
+}
+
+/* Ocean Sunset (Osun) theme button styling */
+body.theme-Osun .primary-btn {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  border: none;
+  box-shadow: 0 4px 6px rgba(78, 205, 196, 0.25);
+}
+
+body.theme-Osun .primary-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+  box-shadow: 0 6px 8px rgba(78, 205, 196, 0.35);
+}
+
+body.theme-Osun .danger-btn,
+body.theme-Osun .stop-btn {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+  border: none;
+  box-shadow: 0 4px 6px rgba(255, 107, 107, 0.25);
+}
+
+body.theme-Osun .danger-btn:hover:not(:disabled),
+body.theme-Osun .stop-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--secondary-dark) 0%, var(--secondary-color) 100%);
+  box-shadow: 0 6px 8px rgba(255, 107, 107, 0.35);
+}
+
+/* Card decorative elements */
+body.theme-Osun .server-card:before {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
+body.theme-Osun .server-header:before {
+  background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+}
+
+body.theme-Osun .stat-card:before {
+  background: linear-gradient(to right, var(--primary-light), var(--secondary-light));
+}
+
+body.theme-Osun .stat-icon {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navigation styling */
+body.theme-Osun .nav-menu a:before {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
+body.theme-Osun .nav-menu a:hover i, 
+body.theme-Osun .nav-menu li.active a i {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.theme-Osun .detail-tab.active {
+  background: linear-gradient(180deg, rgba(78, 205, 196, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+/* Setting section styling */
+body.theme-Osun .settings-group h3:after,
+body.theme-Osun .server-card h3:after,
+body.theme-Osun .section-header h2:after,
+body.theme-Osun .settings-section h3:after {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
+/* Toast notifications styling */
+body.theme-Osun .toast {
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(78, 205, 196, 0.15);
+  border: 1px solid var(--border-color);
+}
+
+body.theme-Osun .toast-message {
+  color: var(--text-color);
+}
+
+body.theme-Osun .toast.success {
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, rgba(255, 255, 255, 0.9) 100%);
+  border-left: 5px solid var(--primary-color);
+}
+
+body.theme-Osun .toast.success .toast-icon {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.theme-Osun .toast.error,
+body.theme-Osun .toast.warning {
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.05) 0%, rgba(255, 255, 255, 0.9) 100%);
+  border-left: 5px solid var(--secondary-color);
+}
+
+body.theme-Osun .toast.error .toast-icon,
+body.theme-Osun .toast.warning .toast-icon {
+  background: linear-gradient(135deg, var(--secondary-light) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.theme-Osun .toast.info .toast-icon {
+  background: linear-gradient(135deg, var(--info-light) 0%, var(--info-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Additional subtle styling for notification types in Osun */
+body.theme-Osun .toast.success:after {
+  background-color: var(--primary-color);
+}
+
+body.theme-Osun .toast.error:after,
+body.theme-Osun .toast.warning:after {
+  background-color: var(--secondary-color);
+}
+
+/* Additional styling enhancements */
+body.theme-Osun .toast.success {
+  box-shadow: 0 8px 25px rgba(78, 205, 196, 0.1);
+}
+
+body.theme-Osun .toast.error,
+body.theme-Osun .toast.warning {
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.1);
+}
+
+/* Box decoration for toasts - subtle details */
+body.theme-Osun .toast:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 0;
+  background-color: var(--toast-accent-color, var(--primary-color));
+}
+
+body.theme-Osun .toast.success:before {
+  --toast-accent-color: var(--primary-color);
+}
+
+body.theme-Osun .toast.error:before,
+body.theme-Osun .toast.warning:before {
+  --toast-accent-color: var(--secondary-color);
+}
+
+/* Form elements */
+body.theme-Osun .form-group input, 
+body.theme-Osun .form-group select, 
+body.theme-Osun .form-group textarea {
+  border-color: var(--border-color);
+  background-color: #ffffff;
+}
+
+body.theme-Osun .form-group input:focus, 
+body.theme-Osun .form-group select:focus, 
+body.theme-Osun .form-group textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+}
+
+/* Server status indicators */
+body.theme-Osun .status-running {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  box-shadow: 0 2px 5px rgba(78, 205, 196, 0.3);
+}
+
+body.theme-Osun .status-running::before {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+body.theme-Osun .status-stopped {
+  background: linear-gradient(135deg, var(--text-secondary) 0%, var(--border-color) 100%);
+  box-shadow: 0 2px 5px rgba(99, 110, 114, 0.2);
+}
+
+body.theme-Osun .status-starting {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  box-shadow: 0 2px 5px rgba(78, 205, 196, 0.3);
+}
+
+body.theme-Osun .status-stopping {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--secondary-dark) 100%);
+  box-shadow: 0 2px 5px rgba(255, 107, 107, 0.3);
+}
+
+/* Console styling */
+body.theme-Osun .console-container {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+}
+
+body.theme-Osun .console-header {
+  background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+  border-bottom: 1px solid var(--primary-dark);
+  color: white;
+}
+
+body.theme-Osun .console-output {
+  background-color: var(--console-bg);
+}
+
+body.theme-Osun .console-line .timestamp {
+  color: rgba(240, 240, 240, 0.6);
+}
+
+/* Improved scrollbar for Ocean Sunset theme */
+body.theme-Osun ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.theme-Osun ::-webkit-scrollbar-track {
+  background: rgba(78, 205, 196, 0.05);
+}
+
+body.theme-Osun ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+  border-radius: 4px;
+}
+
+body.theme-Osun ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--primary-dark), var(--secondary-dark));
+}
+
+/* Server detail page */
+body.theme-Osun .server-header {
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, rgba(255, 107, 107, 0.02) 100%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+body.theme-Osun #detail-ip-port,
+body.theme-Osun #detail-server-version,
+body.theme-Osun #detail-memory,
+body.theme-Osun #detail-gamemode,
+body.theme-Osun #detail-difficulty,
+body.theme-Osun #detail-created {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* Player count styling */
+body.theme-Osun #detail-players.has-players {
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+
+/* File manager styling */
+body.theme-Osun .files-header,
+body.theme-Osun .files-list-header {
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, rgba(255, 107, 107, 0.02) 100%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+body.theme-Osun .file-item:hover {
+  background-color: rgba(78, 205, 196, 0.05);
+}
+
+body.theme-Osun .file-item.selected {
+  background-color: rgba(78, 205, 196, 0.1);
+  border-left: 3px solid var(--primary-color);
+}
+
+/* Backup manager styling */
+body.theme-Osun .backups-header,
+body.theme-Osun .backups-list-header {
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, rgba(255, 107, 107, 0.02) 100%);
+  border-bottom: 1px solid var(--border-color);
+}
+
+body.theme-Osun .backup-item:hover {
+  background-color: rgba(78, 205, 196, 0.05);
+}
+
+/* Modal styling */
+body.theme-Osun .modal-content {
+  background-color: var(--card-bg);
+  box-shadow: 0 10px 30px rgba(78, 205, 196, 0.2);
+}
+
+body.theme-Osun .modal-header {
+  background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+  color: white;
+}
