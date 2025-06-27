@@ -12087,3 +12087,42 @@ true
     "lastStarted": "2025-06-21T08:20:32.640Z"
   }
 ]
+[2025-06-27T14:06:17.625Z] [App] Application initializing
+[2025-06-27T14:06:17.761Z] [App] Application ready event triggered
+[2025-06-27T14:06:17.769Z] [ConfigManager] ConfigManager initialized
+[2025-06-27T14:06:17.770Z] [MinecraftDownloader] MinecraftDownloader initialized
+[2025-06-27T14:06:17.773Z] [ServerManager] ServerManager initialized
+[2025-06-27T14:06:17.773Z] [ServerManager] Loaded 0 servers from config
+[]
+[2025-06-27T14:06:17.774Z] [App] Creating main window
+[2025-06-27T14:06:17.891Z] [App] Main window created and HTML loaded
+[2025-06-27T14:06:17.892Z] [IPC] Setting up IPC handlers
+[2025-06-27T14:06:18.142Z] [App] Java installation check result: true
+[2025-06-27T14:06:18.143Z] [DEBUG] Checking method availability on MainApplication instance
+[2025-06-27T14:06:18.144Z] [DEBUG] getServerFiles exists:
+true
+[2025-06-27T14:06:18.144Z] [DEBUG] getServerBackups exists:
+true
+[2025-06-27T14:06:18.145Z] [DEBUG] Available methods on MainApplication:
+[
+  "constructor",
+  "setupAppEvents",
+  "onReady",
+  "createWindow",
+  "setupIpcHandlers",
+  "getServerFiles",
+  "readServerFile",
+  "writeServerFile",
+  "deleteServerFile",
+  "deleteServerDirectory",
+  "downloadServerFile",
+  "uploadFileToServer",
+  "getServerBackups",
+  "createServerBackup",
+  "restoreServerBackup",
+  "deleteServerBackup",
+  "shutdownAllServers"
+]
+[2025-06-27T14:06:18.617Z] [IPC] get-servers request received, returning 0 servers
+[]
+[2025-06-27T14:06:30.553Z] [App] Window close event triggered
