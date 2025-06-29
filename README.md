@@ -1,14 +1,18 @@
 ## 🧰 How to Install
 
-This guide helps you install and run the Minecraft Server Dashboard — step-by-step, no experience needed!
+This guide helps you install and run the Minecraft Server Dashboard — step-by-step!
 
 ---
 
 ### 🧾 What You Need First
 
-Make sure you have these things ready on your Windows PC before starting:
+Make sure you have these things ready before starting:
 
-1. ✅ **Windows PC** (macOS is not tested)
+1. ✅ **Windows PC** (macOS is supported *only when running from source*)  
+   > 💡 You can run the project from the code editor on **both Windows and macOS**.  
+   > But if you want to use the Dashboard as a **standalone application** (like opening a `.exe` file), it currently **only works on Windows**.  
+   > A packaged macOS version is not available yet.
+
 2. 🧱 **Visual Studio Code (VS Code)** – Code editor  
    ➜ Download: [https://code.visualstudio.com](https://code.visualstudio.com)
 
